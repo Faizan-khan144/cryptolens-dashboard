@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CryptoLens — Market Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">
+          <span class="logo-icon">⬡</span>
+          <span class="logo-text">CryptoLens</span>
+        </a>
+        <div class="nav-links">
+          <a href="#markets" class="nav-link">Markets</a>
+          <a href="#trending" class="nav-link">Trending</a>
+          <a href="#stats" class="nav-link">Overview</a>
+        </div>
+        <button class="btn-refresh" id="refreshBtn">
+          <span class="refresh-icon">↻</span>
+          Refresh
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#markets" class="mobile-link">Markets</a>
+        <a href="#trending" class="mobile-link">Trending</a>
+        <a href="#stats" class="mobile-link">Overview</a>
+        <button class="btn-refresh mobile-refresh" id="mobileRefreshBtn">
+          <span class="refresh-icon">↻</span> Refresh
+        </button>
+      </div>
+    </nav>
+
+    <header class="hero" id="hero">
+      <div class="hero-bg-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge">Live Market Data</div>
+        <h1 class="hero-title">
+          The market,<br />
+          <span class="hero-accent">without the noise.</span>
+        </h1>
+        <p class="hero-subtitle">Real-time prices, market caps, and trends for the top cryptocurrencies — built for traders who move fast.</p>
+        <div class="hero-stats" id="heroStats">
+          <div class="hero-stat skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="hero-stat skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="hero-stat skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="hero-stat skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="section" id="markets">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Top 10 Markets</h2>
+            <p class="section-sub">Ranked by market capitalization</p>
+          </div>
+          <div class="search-wrapper">
+            <span class="search-icon">⌕</span>
+            <input
+              type="text"
+              class="search-input"
+              id="searchInput"
+              placeholder="Search coins..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <div class="table-error hidden" id="tableError">
+            <p class="error-title">Unable to load market data</p>
+            <p class="error-sub">Check your connection and try refreshing.</p>
+          </div>
+          <table class="crypto-table" id="cryptoTable">
+            <thead>
+              <tr>
+                <th class="col-rank">#</th>
+                <th class="col-name">Coin</th>
+                <th class="col-price">Price</th>
+                <th class="col-change">24h Change</th>
+                <th class="col-mcap">Market Cap</th>
+                <th class="col-volume">Volume (24h)</th>
+                <th class="col-supply">Circulating Supply</th>
+              </tr>
+            </thead>
+            <tbody id="cryptoTableBody">
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+              <tr class="skeleton-row"><td colspan="7"><div class="skeleton-bar"></div></td></tr>
+            </tbody>
+          </table>
+          <div class="no-results hidden" id="noResults">
+            <p>No coins match "<span id="searchTerm"></span>"</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="trending">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Trending Now</h2>
+            <p class="section-sub">Most searched in the last 24 hours</p>
+          </div>
+        </div>
+        <div class="trending-grid" id="trendingGrid">
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="trending-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+        </div>
+        <div class="trending-error hidden" id="trendingError">
+          <p>Could not load trending data.</p>
+        </div>
+      </section>
+
+      <section class="section" id="stats">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Global Overview</h2>
+            <p class="section-sub">Aggregated market statistics</p>
+          </div>
+        </div>
+        <div class="stats-grid" id="statsGrid">
+          <div class="stat-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="stat-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="stat-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+          <div class="stat-card skeleton-card">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line"></div>
+          </div>
+        </div>
+        <div class="stats-error hidden" id="statsError">
+          <p>Could not load global statistics.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-icon">⬡</span>
+          <span class="logo-text">CryptoLens</span>
+        </div>
+        <p class="footer-note">Data sourced from <a href="https://www.coingecko.com" target="_blank" rel="noopener">CoinGecko</a>. Prices update every 60 seconds. Not financial advice.</p>
+        <p class="footer-copy">&copy; 2025 CryptoLens. Built by Faizan.</p>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
