@@ -40,7 +40,7 @@ cryptolens-dashboard/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/cryptolens-dashboard.git
+git clone https://github.com/Faizan-khan144/cryptolens-dashboard.git
 ```
 
 2. Open the project folder
